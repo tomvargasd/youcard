@@ -1,0 +1,31 @@
+# Node.js
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite
+dist
+.vite/
+
+# If you have a .env file for local development secrets, ignore it.
+# .env
+# .env.*
+# !.env.example
+
+# Git
+.git
+.gitignore
+
+# IDE / Editor specific
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS specific
+.DS_Store
+Thumbs.db
