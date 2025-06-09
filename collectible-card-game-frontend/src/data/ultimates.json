@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ultimate_001",
+    "name": "Celestial Judgment",
+    "description": "Calls down a beam of pure energy.",
+    "damage": 250,
+    "element": "Light",
+    "imageUrl": "placeholder_ultimate_1.png"
+  },
+  {
+    "id": "ultimate_002",
+    "name": "Shadowstep Barrage",
+    "description": "A flurry of attacks from the shadows.",
+    "damage": 220,
+    "element": "Dark",
+    "imageUrl": "placeholder_ultimate_2.png"
+  }
+]

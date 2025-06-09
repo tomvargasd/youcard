@@ -1,0 +1,14 @@
+[
+  {
+    "id": "avatar_001",
+    "name": "Mystic Wanderer",
+    "description": "A seeker of ancient truths.",
+    "imageUrl": "placeholder_avatar_1.png"
+  },
+  {
+    "id": "avatar_002",
+    "name": "Ironclad Knight",
+    "description": "Steadfast and unyielding.",
+    "imageUrl": "placeholder_avatar_2.png"
+  }
+]

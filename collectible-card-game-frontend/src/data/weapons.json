@@ -1,0 +1,18 @@
+[
+  {
+    "id": "weapon_001",
+    "name": "Blade of the Ancients",
+    "type": "Sword",
+    "power": 95,
+    "rarity": "Legendary",
+    "imageUrl": "placeholder_weapon_1.png"
+  },
+  {
+    "id": "weapon_002",
+    "name": "Staff of Whispers",
+    "type": "Staff",
+    "power": 80,
+    "rarity": "Epic",
+    "imageUrl": "placeholder_weapon_2.png"
+  }
+]
