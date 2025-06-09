@@ -1,14 +1,30 @@
 [
   {
     "id": "avatar_001",
-    "name": "Mystic Wanderer",
-    "description": "A seeker of ancient truths.",
-    "imageUrl": "placeholder_avatar_1.png"
+    "name_template": "{{NICKNAME}}, the Wanderer",
+    "description_template": "A seeker of truths, shaped by the essence of {{FRUIT}} and the spirit of {{OS}}.",
+    "fruitAffinity": "apple",
+    "osAffinity": "ios"
   },
   {
     "id": "avatar_002",
-    "name": "Ironclad Knight",
-    "description": "Steadfast and unyielding.",
-    "imageUrl": "placeholder_avatar_2.png"
+    "name_template": "{{NICKNAME}}, the Knight",
+    "description_template": "Steadfast and unyielding, powered by the core of {{FRUIT}} and the design of {{OS}}.",
+    "fruitAffinity": "banana",
+    "osAffinity": "android"
+  },
+  {
+    "id": "avatar_003",
+    "name_template": "{{NICKNAME}}, the Stargazer",
+    "description_template": "Gazing into the cosmos, drawing energy from the {{FRUIT}} and insights from {{OS}}.",
+    "fruitAffinity": "cherry",
+    "osAffinity": "ios"
+  },
+  {
+    "id": "avatar_004",
+    "name_template": "{{NICKNAME}}, the Grove Tender",
+    "description_template": "Nurturing life, with roots deep as the {{FRUIT}} and adaptable as {{OS}}.",
+    "fruitAffinity": "apple",
+    "osAffinity": "android"
   }
 ]

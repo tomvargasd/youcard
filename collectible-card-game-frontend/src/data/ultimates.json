@@ -2,17 +2,37 @@
   {
     "id": "ultimate_001",
     "name": "Celestial Judgment",
-    "description": "Calls down a beam of pure energy.",
-    "damage": 250,
+    "description": "Calls down a beam of pure energy from the heavens.",
+    "basePower": 250,
     "element": "Light",
+    "themeTags": ["cosmic", "divine_intervention", "epic"],
     "imageUrl": "placeholder_ultimate_1.png"
   },
   {
     "id": "ultimate_002",
     "name": "Shadowstep Barrage",
-    "description": "A flurry of attacks from the shadows.",
-    "damage": 220,
+    "description": "A flurry of attacks executed from the veil of shadows.",
+    "basePower": 220,
     "element": "Dark",
+    "themeTags": ["stealthy", "rapid_strikes", "emotional"],
     "imageUrl": "placeholder_ultimate_2.png"
+  },
+  {
+    "id": "ultimate_003",
+    "name": "Inferno Overdrive",
+    "description": "Unleashes a torrent of all-consuming flames.",
+    "basePower": 280,
+    "element": "Fire",
+    "themeTags": ["elemental_fire", "destructive", "epic"],
+    "imageUrl": "placeholder_ultimate_3.png"
+  },
+  {
+    "id": "ultimate_004",
+    "name": "Serene Mending",
+    "description": "A wave of calming energy that heals and restores.",
+    "basePower": 150, "# Power could mean healing strength here",
+    "element": "Life",
+    "themeTags": ["healing", "restorative", "emotional"],
+    "imageUrl": "placeholder_ultimate_4.png"
   }
 ]

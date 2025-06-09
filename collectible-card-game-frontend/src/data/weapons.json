@@ -5,6 +5,8 @@
     "type": "Sword",
     "power": 95,
     "rarity": "Legendary",
+    "visualTags": ["ancient", "glowing_runes"],
+    "description": "A sword humming with forgotten power.",
     "imageUrl": "placeholder_weapon_1.png"
   },
   {
@@ -13,6 +15,38 @@
     "type": "Staff",
     "power": 80,
     "rarity": "Epic",
+    "visualTags": ["shadow", "ethereal"],
+    "description": "Whispers of forgotten lore cling to this staff.",
     "imageUrl": "placeholder_weapon_2.png"
+  },
+  {
+    "id": "weapon_003",
+    "name": "Sunforged Hammer",
+    "type": "Hammer",
+    "power": 85,
+    "rarity": "Epic",
+    "visualTags": ["fiery", "solar_flare", "heavy"],
+    "description": "Forged in the heart of a star, its impact is devastating.",
+    "imageUrl": "placeholder_weapon_3.png"
+  },
+  {
+    "id": "weapon_004",
+    "name": "Techno-Scythe",
+    "type": "Scythe",
+    "power": 70,
+    "rarity": "Rare",
+    "visualTags": ["tech", "laser_edge", "sleek"],
+    "description": "A scythe with a monomolecular laser edge, swift and precise.",
+    "imageUrl": "placeholder_weapon_4.png"
+  },
+  {
+    "id": "weapon_005",
+    "name": "Sturdy Dagger",
+    "type": "Dagger",
+    "power": 40,
+    "rarity": "Common",
+    "visualTags": ["simple", "reliable"],
+    "description": "A well-crafted dagger, dependable in a pinch.",
+    "imageUrl": "placeholder_weapon_5.png"
   }
 ]
