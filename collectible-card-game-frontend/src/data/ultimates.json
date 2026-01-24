@@ -30,7 +30,7 @@
     "id": "ultimate_004",
     "name": "Serene Mending",
     "description": "A wave of calming energy that heals and restores.",
-    "basePower": 150, "# Power could mean healing strength here",
+    "basePower": 150,
     "element": "Life",
     "themeTags": ["healing", "restorative", "emotional"],
     "imageUrl": "placeholder_ultimate_4.png"
