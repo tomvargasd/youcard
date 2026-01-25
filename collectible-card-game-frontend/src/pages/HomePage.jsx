@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
-import Select from '../components/Select';
+import CustomSelect from '../components/CustomSelect';
 
 // Placeholder options - these could eventually come from data files or an API
 const favoriteColors = [
@@ -20,27 +20,12 @@ const zodiacSigns = [
   { value: 'cancer', label: '[ICON] Cancer' },
 ];
 
-const favoriteFruits = [
-  { value: 'apple', label: '[EMOJI] Apple' },
-  { value: 'banana', label: '[EMOJI] Banana' },
-  { value: 'cherry', label: '[EMOJI] Cherry' },
-  // ...
-];
-
-const osOptions = [
-  { value: 'android', label: '[LOGO] Android' },
-  { value: 'ios', label: '[LOGO] iOS' },
-];
-
 function HomePage() {
   const [nickname, setNickname] = useState('');
   const [favoriteColor, setFavoriteColor] = useState('');
   const [zodiacSign, setZodiacSign] = useState('');
   const [favoritePokemon, setFavoritePokemon] = useState('');
   const [favoriteDigimon, setFavoriteDigimon] = useState('');
-  const [favoriteFruit, setFavoriteFruit] = useState('');
-  const [favoriteSong, setFavoriteSong] = useState('');
-  const [osPreference, setOsPreference] = useState('');
 
   const navigate = useNavigate();
 
@@ -53,9 +38,6 @@ function HomePage() {
       zodiacSign,
       favoritePokemon,
       favoriteDigimon,
-      favoriteFruit,
-      favoriteSong,
-      osPreference,
     };
 
     console.log('Form Submitted. Data:', formData);
@@ -88,7 +70,7 @@ function HomePage() {
           icon={<span role="img" aria-label="user icon" className="text-gray-400">👤</span>}
         />
 
-        <Select
+        <CustomSelect
           label="Favorite Color"
           id="favoriteColor"
           value={favoriteColor}
@@ -97,9 +79,9 @@ function HomePage() {
         >
           <option value="">Select a color</option>
           {favoriteColors.map(color => <option key={color.value} value={color.value}>{color.label}</option>)}
-        </Select>
+        </CustomSelect>
 
-        <Select
+        <CustomSelect
           label="Zodiac Sign"
           id="zodiacSign"
           value={zodiacSign}
@@ -108,16 +90,17 @@ function HomePage() {
         >
           <option value="">Select your zodiac sign</option>
           {zodiacSigns.map(sign => <option key={sign.value} value={sign.value}>{sign.label}</option>)}
-        </Select>
+        </CustomSelect>
 
-        <Input
+        <CustomSelect
           label="Favorite Pokémon"
           id="favoritePokemon"
-          placeholder="E.g., Pikachu (API later)"
           value={favoritePokemon}
-          onChange={(e) => setFavoritePokemon(e.target.value)}
+          onChange={setFavoritePokemon}
           icon={<span role="img" aria-label="pokeball icon" className="text-gray-400">⚪</span>}
-        />
+        >
+          <option value="">E.g., Pikachu (API later)</option>
+        </CustomSelect>
 
         <Input
           label="Favorite Digimon"
@@ -128,36 +111,6 @@ function HomePage() {
           icon={<span role="img" aria-label="digital monster icon" className="text-gray-400">👾</span>}
         />
 
-        <Select
-          label="Favorite Fruit"
-          id="favoriteFruit"
-          value={favoriteFruit}
-          onChange={(e) => setFavoriteFruit(e.target.value)}
-          icon={<span role="img" aria-label="fruit icon" className="text-gray-400">🍉</span>}
-        >
-          <option value="">Select a fruit</option>
-          {favoriteFruits.map(fruit => <option key={fruit.value} value={fruit.value}>{fruit.label}</option>)}
-        </Select>
-
-        <Input
-          label="Favorite Song (Artist + Title)"
-          id="favoriteSong"
-          placeholder="E.g., Queen - Bohemian Rhapsody (API later)"
-          value={favoriteSong}
-          onChange={(e) => setFavoriteSong(e.target.value)}
-          icon={<span role="img" aria-label="music note icon" className="text-gray-400">🎵</span>}
-        />
-
-        <Select
-          label="Android or iOS?"
-          id="osPreference"
-          value={osPreference}
-          onChange={(e) => setOsPreference(e.target.value)}
-          icon={<span role="img" aria-label="mobile phone icon" className="text-gray-400">📱</span>}
-        >
-          <option value="">Select your OS</option>
-          {osOptions.map(os => <option key={os.value} value={os.value}>{os.label}</option>)}
-        </Select>
 
         <button
           type="submit"
