@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import CustomSelect from '../components/CustomSelect';
+import { zodiacSigns } from '../data/zodiac.jsx';
 
 // Placeholder options - these could eventually come from data files or an API
 const favoriteColors = [
-  { value: 'red', label: 'Red' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'green', label: 'Green' },
-  { value: 'yellow', label: 'Yellow' },
-  { value: 'purple', label: 'Purple' },
-];
-
-const zodiacSigns = [
-  { value: 'aries', label: '[ICON] Aries' },
-  { value: 'taurus', label: '[ICON] Taurus' },
-  { value: 'gemini', label: '[ICON] Gemini' },
-  // ... (add more or keep it short for now)
-  { value: 'cancer', label: '[ICON] Cancer' },
+  { value: 'red', label: 'Red', color: '#FF0000' },
+  { value: 'blue', label: 'Blue', color: '#0000FF' },
+  { value: 'green', label: 'Green', color: '#008000' },
+  { value: 'yellow', label: 'Yellow', color: '#FFFF00' },
+  { value: 'purple', label: 'Purple', color: '#800080' },
+  { value: 'orange', label: 'Orange', color: '#FFA500' },
+  { value: 'pink', label: 'Pink', color: '#FFC0CB' },
+  { value: 'black', label: 'Black', color: '#000000' },
+  { value: 'white', label: 'White', color: '#FFFFFF' },
 ];
 
 function HomePage() {
@@ -25,9 +22,71 @@ function HomePage() {
   const [favoriteColor, setFavoriteColor] = useState('');
   const [zodiacSign, setZodiacSign] = useState('');
   const [favoritePokemon, setFavoritePokemon] = useState('');
+  const [pokemonOptions, setPokemonOptions] = useState([]);
+  const [loadingPokemon, setLoadingPokemon] = useState(false);
+  const [allPokemon, setAllPokemon] = useState([]);
   const [favoriteDigimon, setFavoriteDigimon] = useState('');
+  const [digimonOptions, setDigimonOptions] = useState([]);
+  const [loadingDigimon, setLoadingDigimon] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchAllPokemon = async () => {
+      setLoadingPokemon(true);
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1200`);
+        const data = await response.json();
+        const processedPokemon = data.results.map(p => {
+          const urlParts = p.url.split('/');
+          const id = urlParts[urlParts.length - 2];
+          return {
+            value: p.name,
+            label: p.name.charAt(0).toUpperCase() + p.name.slice(1),
+            name: p.name,
+            icon: <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt={p.name} style={{ width: '24px', height: '24px' }} />
+          };
+        });
+        setAllPokemon(processedPokemon);
+      } catch (error) {
+        console.error('Error fetching initial Pokemon data:', error);
+      }
+      setLoadingPokemon(false);
+    };
+    fetchAllPokemon();
+  }, []);
+
+  const handleDigimonSearch = async (searchValue) => {
+    if (!searchValue) {
+      setDigimonOptions([]);
+      return;
+    }
+    setLoadingDigimon(true);
+    try {
+      const response = await fetch(`https://digi-api.com/api/v1/digimon?name=${searchValue}`);
+      const data = await response.json();
+      const digimonData = data.content.map((digimon) => ({
+        value: digimon.name,
+        label: digimon.name,
+        icon: <img src={digimon.image} alt={digimon.name} style={{ width: '24px', height: '24px' }} />
+      }));
+      setDigimonOptions(digimonData);
+    } catch (error) {
+      console.error('Error fetching Digimon data:', error);
+    }
+    setLoadingDigimon(false);
+  };
+
+  const handlePokemonSearch = (searchValue) => {
+    if (!searchValue) {
+      setPokemonOptions([]);
+      return;
+    }
+    const filtered = allPokemon
+      .filter(p => p.name.includes(searchValue.toLowerCase()))
+      .slice(0, 10);
+    setPokemonOptions(filtered);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -74,41 +133,77 @@ function HomePage() {
           label="Favorite Color"
           id="favoriteColor"
           value={favoriteColor}
-          onChange={(e) => setFavoriteColor(e.target.value)}
+          onChange={setFavoriteColor}
           icon={<span role="img" aria-label="palette icon" className="text-gray-400">🎨</span>}
-        >
-          <option value="">Select a color</option>
-          {favoriteColors.map(color => <option key={color.value} value={color.value}>{color.label}</option>)}
-        </CustomSelect>
+          placeholder="Select a color"
+          options={favoriteColors}
+          optionRender={(option) => (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                backgroundColor: option.color,
+                marginRight: '8px',
+                border: '1px solid #555'
+              }} />
+              <span>{option.label}</span>
+            </div>
+          )}
+        />
 
         <CustomSelect
           label="Zodiac Sign"
           id="zodiacSign"
           value={zodiacSign}
-          onChange={(e) => setZodiacSign(e.target.value)}
+          onChange={setZodiacSign}
           icon={<span role="img" aria-label="zodiac icon" className="text-gray-400">✨</span>}
-        >
-          <option value="">Select your zodiac sign</option>
-          {zodiacSigns.map(sign => <option key={sign.value} value={sign.value}>{sign.label}</option>)}
-        </CustomSelect>
+          placeholder="Select your zodiac sign"
+          options={zodiacSigns}
+          optionRender={(option) => (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ marginRight: '8px' }}>{option.icon}</span>
+              <span>{option.label}</span>
+            </div>
+          )}
+        />
 
         <CustomSelect
           label="Favorite Pokémon"
           id="favoritePokemon"
           value={favoritePokemon}
           onChange={setFavoritePokemon}
+          onSearch={handlePokemonSearch}
+          options={pokemonOptions}
+          loading={loadingPokemon}
+          showSearch
           icon={<span role="img" aria-label="pokeball icon" className="text-gray-400">⚪</span>}
-        >
-          <option value="">E.g., Pikachu (API later)</option>
-        </CustomSelect>
+          placeholder="E.g., Pikachu"
+          optionRender={(option) => (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ marginRight: '8px' }}>{option.icon}</span>
+              <span>{option.label}</span>
+            </div>
+          )}
+        />
 
-        <Input
+        <CustomSelect
           label="Favorite Digimon"
           id="favoriteDigimon"
-          placeholder="E.g., Agumon (API later)"
           value={favoriteDigimon}
-          onChange={(e) => setFavoriteDigimon(e.target.value)}
+          onChange={setFavoriteDigimon}
+          onSearch={handleDigimonSearch}
+          options={digimonOptions}
+          loading={loadingDigimon}
+          showSearch
           icon={<span role="img" aria-label="digital monster icon" className="text-gray-400">👾</span>}
+          placeholder="E.g., Agumon"
+          optionRender={(option) => (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ marginRight: '8px' }}>{option.icon}</span>
+              <span>{option.label}</span>
+            </div>
+          )}
         />
 
 

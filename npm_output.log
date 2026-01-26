@@ -1,0 +1,12 @@
+
+> collectible-card-game-frontend@0.0.0 dev
+> vite
+
+
+  VITE v6.3.5  ready in 227 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme

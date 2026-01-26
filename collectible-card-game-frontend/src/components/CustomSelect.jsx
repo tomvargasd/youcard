@@ -10,7 +10,9 @@ function CustomSelect({ label, id, icon, children, ...props }) {
         {icon && <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">{icon}</div>}
         <Select
           id={id}
+          style={{minHeight: '42px'}}
           className={`w-full rounded-md bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500 ${icon ? 'pl-10' : ''}`}
+          dropdownClassName="bg-gray-700 rounded-md border border-gray-600 text-white"
           {...props}
         >
             {children}
